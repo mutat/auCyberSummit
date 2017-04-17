@@ -9,6 +9,30 @@
         <script src='https://www.google.com/recaptcha/api.js'></script>
     </head>
     <body>
+    <div class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ url_for('main.home') }}">Cyber Summit</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url_for('main.home') }}">Schedule</a> </li>
+                    <li><a href="#">Location</a> </li>
+                    <li><a href="#">Parking</a> </li>
+                    <li><a href="#">Points of Interest</a> </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Sign In</a> </li>
+                </ul>
+            </div>
+        </div>
+    </div>
         <div class="container">
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
