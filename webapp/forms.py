@@ -12,8 +12,9 @@ class SpeakerForm(Form):
     submit = SubmitField('Submit:')
 
 class EventForm(Form):
-    name = StringField('Event Title:', validators=[DataRequired(), Length(max=255)])
-    time = DateTimeField('When:', validators=[DataRequired()])
+    title = StringField('Event Title:', validators=[DataRequired(), Length(max=255)])
+    time = StringField('When:', validators=[DataRequired()])
     speaker = SelectField('Speaker:', coerce=int)
+    description = TextAreaField('Description:')
     submit = SubmitField('Submit')
 

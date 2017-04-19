@@ -3,6 +3,7 @@ from flask import Flask
 from models import db
 from controllers.main import main_blueprint
 from controllers.speaker import speaker_blueprint
+from controllers.agenda import event_blueprint
 from flask_bootstrap import Bootstrap
 
 
@@ -20,5 +21,6 @@ def create_app(object_name):
     #Register BluePrints
     app.register_blueprint(main_blueprint)
     app.register_blueprint(speaker_blueprint)
+    app.register_blueprint(event_blueprint)
 
     return app

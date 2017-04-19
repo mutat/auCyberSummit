@@ -20,41 +20,6 @@
   </div>
     {% endfor %}
 </div>
-<div class="row">
-    <h1 class="text-center">Create A New Session</h1>
-    <form method="post" action="#">
-        {{ event_form.hidden_tag() }}
-        <div class="form-group">
-            {{ event_form.name.label }}
-            {% if event_form.name.errors %}
-                {% for e in event_form.name.errors %}
-                    <p class="help-block">{{ e }}</p>
-                {% endfor %}
-            {% endif %}
-            {{ event_form.name(class_='form-control') }}
-        </div>
-        <div class="form-group">
-            {{ event_form.time.label }}
-            <div class="input-group date" id='datetimepicker1'>
-                <input type="text" class="form-control">
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-        </div>
-        <div class="form-group">
-            {{ event_form.speaker.label }}
-            {% if event_form.speaker.errors %}
-                {% for e in event_form.speaker.errors %}
-                    <p class="help-block">{{ e }}</p>
-                {% endfor %}
-            {% endif %}
-            {{ event_form.speaker(class_='form-control') }}
-        </div>
-        <input class="btn btn-primary" type="submit" value="Submit">
-
-    </form>
-</div>
 
 {% endblock %}
 {% block scripts %}

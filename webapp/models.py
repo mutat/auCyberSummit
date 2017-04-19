@@ -21,6 +21,7 @@ class Speaker(db.Model):
 
 class EventSession(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
+    title = db.Column(db.String())
     time = db.Column(db.DateTime())
     speaker_id = db.Column(db.Integer(), db.ForeignKey('speaker.id'))
     description = db.Column(db.Text())
