@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{% block title %}Blog{% endblock %}</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-        <script src='https://www.google.com/recaptcha/api.js'></script>
-    </head>
-    <body>
+{% extends "bootstrap/base.html" %}
+
+{% block title %}Augusta University Cyber Summit today{% endblock %}
+
+{% block head %}
+{{ super() }}
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+<link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+{% endblock %}
+
+{% block navbar %}
     <div class="navbar navbar-inverse" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -23,9 +23,9 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url_for('main.home') }}">Schedule</a> </li>
-                    <li><a href="#">Location</a> </li>
-                    <li><a href="#">Parking</a> </li>
+                    <li><a href="{{ url_for('speaker.home') }}">Speakers</a> </li>
                     <li><a href="#">Points of Interest</a> </li>
+                    <li><a href="#">Info</a> </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">Sign In</a> </li>
@@ -33,6 +33,9 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block content %}
         <div class="container">
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
@@ -45,14 +48,11 @@
                 {% endif %}
             {% endwith %}
 
-            {% block body %}
-
-            {% endblock %}
+            {% block page_content %}{% endblock %}
         </div>
+{% endblock %}
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-        {% block js %}
-        {% endblock %}
-    </body>
-</html>
+{% block scripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+{% endblock %}

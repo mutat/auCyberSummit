@@ -5,11 +5,11 @@ class Config(object):
 
 class ProdConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///../database.db'
+    SQLALCHEMY_DATABASE_URI = "DATABASE_URL"
 
 class DevConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///../database.db'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://btatum:P@rker101@localhost:5432/cyberSummit'
 
 class HerokuConfig(ProdConfig):
     @classmethod
