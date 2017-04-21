@@ -2,10 +2,6 @@
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block page_content %}
-<div class="jumbotron">
-    <h1><a href="{{ url_for('.home') }}">Coming Soon</a></h1>
-    <p>Augusta University Cyber Summit -- Helper Site</p>
-</div>
 <div class="row">
     {% for speaker in speakers %}
   <div class="col-sm-6 col-md-3">

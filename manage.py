@@ -4,7 +4,7 @@ from flask_script import Manager, Server
 from flask_migrate import Migrate, MigrateCommand
 
 from webapp import create_app
-from webapp.models import db, Speaker, EventSession
+from webapp.models import db, Speaker, EventSession, User
 
 env = os.environ.get('WEBAPP_ENV', 'heroku')
 app = create_app('webapp.config.%sConfig' % env.capitalize())
@@ -22,7 +22,8 @@ def make_shell_context():
         app=app,
         db=db,
         Speaker=Speaker,
-        EventSession=EventSession
+        EventSession=EventSession,
+        User=User
     )
 
 if __name__ == "__main__":

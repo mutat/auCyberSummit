@@ -38,3 +38,6 @@ def new_event():
     return render_template('event/new.html', form=form)
 
 
+@event_blueprint.route('/thingamajig')
+def thingamajig():
+    return "Smooth as Tennessee Whiskey"

@@ -4,10 +4,7 @@ from models import db
 from controllers.main import main_blueprint
 from controllers.speaker import speaker_blueprint
 from controllers.agenda import event_blueprint
-from flask_bootstrap import Bootstrap
-
-
-bootstrap = Bootstrap()
+from webapp.extensions import bootstrap, bcrypt, login_manager
 
 
 def create_app(object_name):
@@ -17,6 +14,8 @@ def create_app(object_name):
     #initialize add ons
     db.init_app(app)
     bootstrap.init_app(app)
+    bcrypt.init_app(app)
+    login_manager.init_app(app)
 
     #Register BluePrints
     app.register_blueprint(main_blueprint)
