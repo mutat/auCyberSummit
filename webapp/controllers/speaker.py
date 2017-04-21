@@ -1,6 +1,7 @@
 from flask import render_template, Blueprint, url_for, redirect, flash
 from webapp.models import db, Speaker
 from ..forms import SpeakerForm
+from flask_login import login_required
 
 
 speaker_blueprint = Blueprint(
@@ -18,6 +19,7 @@ def home():
 
 
 @speaker_blueprint.route('/new', methods=['GET', 'POST'])
+@login_required
 def new_speaker():
     form = SpeakerForm()
 
@@ -39,6 +41,7 @@ def new_speaker():
 
 
 @speaker_blueprint.route('/edit/<int:id>', methods=['GET', 'POST'])
+@login_required
 def edit_speaker(id):
     speaker = Speaker.query.get_or_404(id)
     form = SpeakerForm()

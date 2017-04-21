@@ -1,6 +1,7 @@
 from flask import render_template, Blueprint, url_for, redirect, flash
 from webapp.models import db, EventSession, Speaker
 from ..forms import EventForm
+from flask_login import login_required
 
 
 event_blueprint = Blueprint(
@@ -17,6 +18,7 @@ def event_home():
 
 
 @event_blueprint.route('/new', methods=['GET', 'POST'])
+@login_required
 def new_event():
     form = EventForm()
     form.speaker.choices = [(g.id, g.f_name + ' ' + g.l_name) for g in Speaker.query.order_by(Speaker.id)]
