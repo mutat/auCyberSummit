@@ -1,0 +1,29 @@
+{% extends './base.html' %}
+{% block page_content %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title" align="center">{{ speaker.f_name }} {{ speaker.l_name }}</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-3 col-lg-3" align="center"><img src="{{ speaker.image }}" height="300px" class="img-circle img-responsive"> </div>
+            <div class="col-md-9 col-lg-9">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td><strong>Title:</strong></td>
+                        <td>{{ speaker.employer }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Speaker Bio:</strong></td>
+                        <td>{{ speaker.bio }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}}

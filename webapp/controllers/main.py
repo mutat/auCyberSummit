@@ -1,6 +1,6 @@
 from flask import render_template, Blueprint, flash, redirect, url_for, request
 from ..forms import SpeakerForm, EventForm, LoginForm, RegisterForm
-from webapp.models import db, Speaker, User
+from webapp.models import db, Speaker, User, EventSession
 from flask_login import login_user, logout_user, current_user, login_required
 
 main_blueprint = Blueprint(
@@ -14,11 +14,9 @@ main_blueprint = Blueprint(
 
 @main_blueprint.route('/')
 def home():
-    form = SpeakerForm()
-    event_form = EventForm()
-    event_form.speaker.choices = [(g.id, g.f_name + ' ' + g.l_name) for g in Speaker.query.order_by(Speaker.id)]
-    speakers = Speaker.query.order_by(Speaker.id).all()
-    return render_template('home.html', form=form, speakers=speakers, event_form=event_form)
+    events = EventSession.query.join(Speaker).add_columns(Speaker.f_name, Speaker.l_name, Speaker.employer, Speaker.image).order_by(
+        EventSession.time).all()
+    return render_template('home.html', events=events)
 
 
 @main_blueprint.route('login', methods=['GET', 'POST'])

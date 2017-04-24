@@ -40,6 +40,36 @@ def new_event():
     return render_template('event/new.html', form=form)
 
 
-@event_blueprint.route('/thingamajig')
-def thingamajig():
-    return "Smooth as Tennessee Whiskey"
+@event_blueprint.route('/edit/<int:id>', methods=['GET', 'POST'])
+@login_required
+def edit_event(id):
+    form = EventForm()
+    event = EventSession.query.get_or_404(id)
+    form.speaker.choices = [(g.id, g.f_name + ' ' + g.l_name) for g in Speaker.query.order_by(Speaker.id)]
+
+    if form.validate_on_submit():
+        event.title = form.title.data
+        event.time = form.time.data
+        event.speaker_id = form.speaker.data
+        event.description = form.description.data
+
+        db.session.add(event)
+        db.session.commit()
+
+        flash('Updated' + event.title, category="success")
+
+        return redirect(url_for('event.event_home'))
+
+    form.title.data = event.title
+    form.time.data = event.time
+    form.speaker.data = event.speaker_id
+    form.description.data = event.description
+
+    return render_template('event/edit.html', form=form)
+
+@event_blueprint.route('/info/<int:id>')
+def detail_event(id):
+    event = EventSession.query.get_or_404(id)
+    speaker = Speaker.query.get_or_404(event.speaker_id)
+
+    return render_template('event/detail.html', event=event, speaker=speaker)

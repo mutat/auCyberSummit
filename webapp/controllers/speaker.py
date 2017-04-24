@@ -69,7 +69,10 @@ def edit_speaker(id):
     return render_template('edit.html', form=form, speaker=speaker)
 
 
-
+@speaker_blueprint.route('/info/<int:id>')
+def detail_speaker(id):
+    speaker = Speaker.query.get_or_404(id)
+    return render_template('detail.html', speaker=speaker)
 
 
 

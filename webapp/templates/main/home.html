@@ -2,20 +2,22 @@
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block page_content %}
+
+
 <div class="row">
-    {% for speaker in speakers %}
-  <div class="col-sm-6 col-md-3">
-    <div class="thumbnail">
-      <img src="{{ speaker.image }}"  alt="{{ speaker.f_name }} {{ speaker.l_name }}">
-      <div class="caption">
-        <h3>{{ speaker.f_name }} {{ speaker.l_name }}</h3>
-        <h5>{{ speaker.employer }}</h5>
-        <p>{{ speaker.bio }}</p>
-        <p><a href="#{{ speaker.id }}" class="btn btn-primary" role="button">Button</a></p>
-      </div>
+{% for event in events %}
+  <div class="media">
+    <div class="media-left media-middle">
+      <a href="#"><img class="media-object" height="65px" src="{{ event.image }}"  alt="{{ event.f_name }} {{ event.l_name }}"></a>
+    </div>
+    <div class="media-body">
+        <h4 class="media-heading">{{ event.EventSession.title }}</h4>
+        <h5>{{ event.f_name }} {{ event.l_name }}</h5>
+        <p>{{ event.EventSession.time.strftime('%b-%d-%Y %I:%M %p') }}</p>
+        <p>{{ event.EventSession.description }}</p>
     </div>
   </div>
-    {% endfor %}
+  {% endfor %}
 </div>
 
 {% endblock %}

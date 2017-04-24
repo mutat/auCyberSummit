@@ -1,3 +1,7 @@
 .thumbnail img{
     height:200px;
 }
+
+.media-object img{
+    height:64px;
+}

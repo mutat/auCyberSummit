@@ -2,7 +2,7 @@
 {% block page_content %}
 <div class="panel panel-default">
     <div class="panel-heading">
-        Event Sessions <a href="{{ url_for('.new_event') }}" class="pull-right"><span class="glyphicon glyphicon-plus"></span> </a>
+        Event Sessions <a href="{{ url_for('event.new_event') }}" class="pull-right"><span class="glyphicon glyphicon-plus"></span> </a>
     </div>
     <table class="table">
         <tr>
@@ -16,7 +16,7 @@
                 <td>{{ event.EventSession.time }}</td>
                 <td>{{ event.EventSession.title }}</td>
                 <td>{{ event.f_name }} {{ event.l_name }}</td>
-                <td><a href="#"><span class="glyphicon glyphicon-pencil"></span></a> <span class="glyphicon glyphicon-sunglasses"></span> <span class="glyphicon glyphicon-remove"></span></td>
+                <td><a href="{{ url_for('event.edit_event', id=event.EventSession.id) }}"><span class="glyphicon glyphicon-pencil"></span></a> <a href="{{ url_for('event.detail_event', id=event.EventSession.id) }}"><span class="glyphicon glyphicon-sunglasses"></span></a> <span class="glyphicon glyphicon-remove"></span></td>
             </tr>
         {% endfor %}
     </table>
