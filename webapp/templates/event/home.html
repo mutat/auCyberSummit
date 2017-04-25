@@ -16,7 +16,12 @@
                 <td>{{ event.EventSession.time }}</td>
                 <td>{{ event.EventSession.title }}</td>
                 <td>{{ event.f_name }} {{ event.l_name }}</td>
-                <td><a href="{{ url_for('event.edit_event', id=event.EventSession.id) }}"><span class="glyphicon glyphicon-pencil"></span></a> <a href="{{ url_for('event.detail_event', id=event.EventSession.id) }}"><span class="glyphicon glyphicon-sunglasses"></span></a> <span class="glyphicon glyphicon-remove"></span></td>
+                <td><div class="btn-group" role="group">
+                    <a href="{{ url_for('event.edit_event', id=event.EventSession.id) }}"><button type="button" class="btn btn-default" ><span class="glyphicon glyphicon-pencil"></span></button></a>
+                    <a href="{{ url_for('event.detail_event', id=event.EventSession.id) }}"><button type="button" class="btn btn-default" ><span class="glyphicon glyphicon-sunglasses"></span></button></a>
+                    <a href="#"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> </button></a>
+                </div>
+                </td>
             </tr>
         {% endfor %}
     </table>

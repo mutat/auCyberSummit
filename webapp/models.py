@@ -62,3 +62,12 @@ class User(db.Model):
 
     def get_id(self):
          return unicode(self.id)
+
+class Poi(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(255))
+    addr1 = db.Column(db.String(255))
+    city = db.Column(db.String(125))
+    state = db.Column(db.String(3))
+    zip = db.Column(db.String(10))
+    description = db.Column(db.Text())

@@ -71,3 +71,12 @@ class RegisterForm(Form):
 
         return True
 
+
+class PoiForm(Form):
+    name = StringField('Name:', validators=[DataRequired(), Length(max=255)])
+    addr1 = StringField('Address:', validators=[DataRequired(), Length(max=255)])
+    city = StringField('City:', validators=[DataRequired(), Length(max=125)])
+    state = StringField('State:', validators=[DataRequired(), Length(max=3)])
+    zip = StringField('Zip:', validators=[DataRequired(), Length(max=10)])
+    description = TextAreaField('Description:')
+    submit = SubmitField('Submit')

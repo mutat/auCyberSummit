@@ -4,6 +4,7 @@ from models import db
 from controllers.main import main_blueprint
 from controllers.speaker import speaker_blueprint
 from controllers.agenda import event_blueprint
+from controllers.poi import poi_blueprint
 from webapp.extensions import bootstrap, bcrypt, login_manager
 
 
@@ -21,5 +22,6 @@ def create_app(object_name):
     app.register_blueprint(main_blueprint)
     app.register_blueprint(speaker_blueprint)
     app.register_blueprint(event_blueprint)
+    app.register_blueprint(poi_blueprint)
 
     return app

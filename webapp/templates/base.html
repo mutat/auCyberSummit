@@ -26,7 +26,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url_for('event.event_home') }}">Schedule</a> </li>
                     <li><a href="{{ url_for('speaker.home') }}">Speakers</a> </li>
-                    <li><a href="#">Points of Interest</a> </li>
+                    <li><a href="{{ url_for('poi.poi_home') }}">Points of Interest</a> </li>
                     <li><a href="#">Info</a> </li>
                 </ul>
                 {% if current_user.is_authenticated %}
