@@ -2,6 +2,7 @@ from flask import render_template, Blueprint, flash, redirect, url_for, request
 from ..forms import SpeakerForm, EventForm, LoginForm, RegisterForm
 from webapp.models import db, Speaker, User, EventSession
 from flask_login import login_user, logout_user, current_user, login_required
+from sqlalchemy import text
 
 main_blueprint = Blueprint(
     'main',
@@ -42,7 +43,7 @@ def logout():
 
 
 @main_blueprint.route('__geek', methods=['GET', 'POST'])
-@login_required
+#@login_required
 def register():
     form = RegisterForm()
 
@@ -63,7 +64,20 @@ def register():
 
 @main_blueprint.route('thingamajig')
 def thingamajig():
-    return "Smooth as Tennessee Whiskey"
+    sql = text('SELECT event_session.id, event_session.speaker_id, event_session.description, event_session.title, speaker.f_name FROM public.event_session INNER JOIN speaker ON event_session.speaker_id=speaker.id;')
+    events = "[" + '\n'
+    result = db.engine.execute(sql)
+    for row in result:
+        id = '"id":'+str(row[0])
+        speaker_id = '"speaker_id":'+str(row[1])
+        description = '"description":'+'"'+row[2]+'"'
+        title = '"title":'+'"'+row[3]+'"'
+        f_name = '"f_name":'+'"'+row[4]+'"'
+        ans = id+'\n'+speaker_id+'\n'+description+'\n'+title+'\n'+f_name+'\n'
+        events += ans
+
+    events += "]"
+    return events
 
 
 
